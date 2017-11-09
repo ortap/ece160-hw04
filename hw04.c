@@ -15,6 +15,12 @@ typedef struct {
   char *year;
 } Student;
 
+/* Define switch cases for the following 4 modes:
+ Case 1: name only
+ Case 2: major and name
+ Case 3: year and name
+ Case 4: years left and name
+*/
 void print_student(Mode m, Student s){
   switch (m) {
     case NAME_ONLY:
@@ -32,16 +38,8 @@ void print_student(Mode m, Student s){
   }
 }
 
-/*
-	argv[1] will be the Mode integer
-	argv[2...] will be student info in the form [first_name, last_name, major, year]
-	the fields are all strings (char[])
-	except year is a number (int)
-*/
+
 void main(int argc, char *argv[]) {
-  // TODO: parse argv to populate student structs 
-  // for now, here's two hardcoded students:
-  // Declarations
 
   //open the input file
   char *filename = argv[1];
@@ -51,7 +49,7 @@ void main(int argc, char *argv[]) {
       printf("Error: Unable to locate or open file: %s\n", filename);
     }
 
-  
+  //Allocating memory and scanning for 'attributes' of the struct
   char *buffer = malloc(256);
   Student array[256];
   Student sx;
@@ -66,6 +64,7 @@ void main(int argc, char *argv[]) {
     i++;
   }
 
+  // Scanning for stdin (Keyboard input) for mode
   int si, bin;
   while(fgets(buffer,255,stdin))
     {
